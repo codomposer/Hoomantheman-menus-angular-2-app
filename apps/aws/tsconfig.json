@@ -1,0 +1,14 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": ".",
+		"declarationDir": ".",
+		"lib": [
+			"ESNext",
+			"dom"
+		],
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true
+	}
+}

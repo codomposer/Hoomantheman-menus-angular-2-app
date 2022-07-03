@@ -1,0 +1,39 @@
+{
+	"name": "@menus/web-kit",
+	"version": "0.0.2",
+	"scripts": {
+		"dev": "svelte-kit dev",
+		"build": "svelte-kit build",
+		"preview": "svelte-kit preview",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@ctx-core/function": "^20.2.2",
+		"@ctx-core/store": "^27.0.35",
+		"@ctx-core/uuid": "^8.0.14",
+		"@menus/adapter_file": "workspace:^1.0.1",
+		"@menus/bootstrap": "workspace:^1.2.13",
+		"@menus/consumer-layout-ui": "workspace:^1.8.3",
+		"@menus/consumer-shared-css": "workspace:^1.1.1",
+		"@menus/css": "workspace:^1.1.4",
+		"@menus/http": "workspace:^1.3.7",
+		"@menus/route": "workspace:^1.2.5",
+		"@menus/server": "workspace:^1.1.1",
+		"@menus/ui": "workspace:^1.4.3",
+		"@menus/web-config": "workspace:^1.6.14",
+		"@sveltejs/kit": "next",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"svelte": "^3.44.2",
+		"svelte-check": "^2.2.8",
+		"svelte-preprocess": "^4.9.8",
+		"swiper": "^6.8.4",
+		"tslib": "^2.3.1",
+		"typescript": "4.4.4"
+	},
+	"noUpdate": [
+		"swiper"
+	],
+	"type": "module"
+}

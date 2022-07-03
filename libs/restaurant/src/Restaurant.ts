@@ -1,0 +1,82 @@
+import type { RestaurantHourCtx_I, RestaurantHours_I, schedule_n0_T } from '@menus/restaurant-hours-lib'
+import type { ServiceType } from '@menus/service-type-common'
+import { BaseRestaurantCard } from './BaseRestaurantCard.js'
+import type { Restaurant_I } from './Restaurant_I.js'
+export class Restaurant extends BaseRestaurantCard implements Restaurant_I {
+	public ID:number
+	public FireFlyID:string
+	public Name:string
+	public Title:string
+	public Keywords:string
+	public Description:string
+	public Address_1:string
+	public Address_2:string
+	public City:string
+	public State:string
+	public Mobile:string
+	public Fax:string
+	public Email:string
+	public CI_FirstName:string
+	public CI_LastName:string
+	public CI_Address:string
+	public CI_City:string
+	public CI_State:string
+	public CI_ZipCode:string
+	public CI_ContactNo:string
+	public CI_Email:string
+	public CI_Webmaster_Name:string
+	public BirthDate:string
+	public LegalName:string
+	public AccountName:string
+	public BusinessInfo:string
+	public RoutingNumber:string
+	public AccountNumber:string
+	public TIN:string
+	public Tax:number
+	public EnableOnlineOrdering:boolean
+	public Enabled:boolean
+	// public Subscription: string;
+	public SubscriptionID:number
+	public Owner_NextSubscriptionID:number
+	public Owner_NextSubscriptionStartDate:string
+	public DeliveryTime_Min:string
+	public DeliveryTime_Max:string
+	public PickupTime_Min:string
+	public PickupTime_Max:string
+	public Terms:boolean
+	public WaivedDeliveryCharge:number
+	public Cuisine:string
+	public Segment:string
+	public ST_Catering_Enabled:boolean
+	public ST_Delivery_Enabled:boolean
+	public ST_DiningIn_Enabled:boolean
+	public ST_Pickup_Enabled:boolean
+	public CallOnNewOrder:boolean
+	public EmailOnNewOrder:boolean
+	public FaxOnNewOrder:boolean
+	public SMSOnNewOrder:boolean
+	public AutoAcceptNewOrder:boolean
+	public CallOnScheduledOrder:boolean
+	public FaxOnScheduledOrder:boolean
+	public EmailOnScheduledOrder:boolean
+	public SMSOnScheduledOrder:boolean
+	public Braintree_Onboard_Status:number
+	public Braintree_Onboard_Message:string
+	public Subscription_Expired:boolean
+	public Subscription_Expiration:string
+	// ui
+	public ConfirmAccountNumber:string
+	public customerName:string
+	public taxRate:string
+	public isHidden:boolean
+	public is_selected:boolean
+	public serviceType:ServiceType
+	public minute_tick:Date
+	public restaurant_hours:RestaurantHours_I
+	public restaurant_hour_ctx_a:RestaurantHourCtx_I[]
+	public ASAP_available:boolean
+	public is_open:boolean
+	public schedule_n0_a:schedule_n0_T[]
+	public schedule_n0_value:string
+	public schedule_n1_value:string
+}

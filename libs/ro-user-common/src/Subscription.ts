@@ -1,0 +1,22 @@
+export class Subscription {
+	AutoPaymentSettlement:boolean
+	BestValue:boolean
+	DeliveryIntegration:boolean
+	Description:string
+	DigitalCoupon:boolean
+	FoodPhotographer:boolean
+	ID:number
+	MenuSense:boolean
+	MobileApp:boolean
+	MobileFriendlyWebsite:boolean
+	MonthlyValue:number
+	Name:string
+	ServiceFeeFlat:number
+	ServiceFeePercent:number
+	SetupFee:number
+	DeliveryBy:string
+	DeliveryCharge:number
+	YearlyDiscountPercent:number
+	YourOwnDomain:boolean
+	YourOwnSubdomain:boolean
+}

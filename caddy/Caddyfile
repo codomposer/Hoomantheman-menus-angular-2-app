@@ -1,0 +1,51 @@
+# See: https://blog.cloud66.com/running-rails-development-with-a-fake-domain-and-ssl/
+# /etc/hosts
+# 127.0.0.1 my.dev.menu.com
+{
+  auto_https disable_redirects
+}
+
+my.dev.menu.com {
+  tls my.dev.menu.com.pem my.dev.menu.com-key.pem
+  @not_static {
+    not {
+      file {
+        try_files {path}
+      }
+    }
+  }
+  reverse_proxy @not_static 127.0.0.1:8004
+#  root * ../apps/web/static
+  file_server
+  route /mapp/* {
+    reverse_proxy https://menus.mine.nu {
+      header_up Host {http.reverse_proxy.upstream.hostport}
+    }
+  }
+}
+#my.dev.menu.com:30000 {
+#  tls my.dev.menu.com.pem my.dev.menu.com-key.pem
+#  reverse_proxy 127.0.0.1:8004
+#}
+*.my.dev.menu.com {
+  tls _wildcard.my.dev.menu.com.pem _wildcard.my.dev.menu.com-key.pem
+  @not_static {
+    not {
+      file {
+        try_files {path}
+      }
+    }
+  }
+  reverse_proxy @not_static 127.0.0.1:8004
+#  root * ../apps/web/static
+  file_server
+  route /mapp/* {
+    reverse_proxy https://menus.mine.nu {
+      header_up Host {http.reverse_proxy.upstream.hostport}
+    }
+  }
+}
+#*.my.dev.menu.com:30000 {
+#  tls _wildcard.my.dev.menu.com.pem _wildcard.my.dev.menu.com-key.pem
+#  reverse_proxy 127.0.0.1:8004
+#}

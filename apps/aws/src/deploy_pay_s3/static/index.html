@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+					integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+					crossorigin="anonymous"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+					font-family: 'Lato', sans-serif;
+					font-size: 14px;
+				}
+
+				.payment-page .page-navbar {
+					position: absolute;
+					top: 0;
+					width: 100%;
+					z-index: 1;
+					background-color: #fff;
+					height: 56px;
+					border-bottom: 1px solid #e6e6e6;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+
+				.payment-page .page-navbar .page-title {
+					font-weight: 700;
+				}
+
+				.payment-page .page-navbar .page-title .title-text .service-type-text {
+					text-transform: capitalize;
+				}
+
+				.payment-page .page-content {
+					margin-top: 56px;
+				}
+
+				.payment-page .page-content .restaurant-details {
+					padding: 24px 0;
+					text-align: center;
+				}
+
+				.payment-page .page-content .restaurant-details .restaurant-image {
+					width: 96px;
+					height: 96px;
+					margin: 0 auto;
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: 50%;
+				}
+
+				.payment-page .page-content .restaurant-details .restaurant-name {
+					margin-top: 17px;
+					font-weight: 900;
+					font-size: 24px;
+				}
+
+				.payment-page .page-content .summary-list {
+					padding: 24px;
+				}
+
+				.payment-page .page-content .summary-list .summary-item {
+					display: flex;
+					justify-content: space-between;
+					font-weight: 700;
+					padding: 13px 0 14px;
+					border-bottom: 1px solid #dbdbdb;
+				}
+
+				.payment-page .page-content .payment-actions {
+					text-align: center;
+				}
+
+				.payment-page .page-content .user-message {
+					padding: 0 24px;
+					font-weight: 900;
+					font-size: 18px;
+					text-align: center;
+				}
+
+				.payment-page .page-content .user-information {
+					text-align: center;
+					margin-top: 64px;
+					padding: 0 48px;
+				}
+
+				.apple-pay-button {
+					display: inline-block;
+					-webkit-appearance: -apple-pay-button;
+					/* -apple-pay-button-type: buy; */
+					/* Use any supported button type. */
+				}
+
+				.apple-pay-button-black {
+					-apple-pay-button-style: black;
+				}
+
+				.apple-pay-button-white {
+					-apple-pay-button-style: white;
+				}
+
+				.apple-pay-button-white-with-line {
+					-apple-pay-button-style: white-outline;
+				}
+    </style>
+</head>
+
+<body>
+
+    <!-- Page -->
+    <div class="payment-page">
+
+        <!-- Page navbar -->
+        <div class="page-navbar">
+            <div class="page-title">
+                <div class="title-text">
+                    Checkout <span id="service-type-text" class="service-type-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="restaurant-details">
+                <div id="restaurant-image" class="restaurant-image"></div>
+                <div id="restaurant-name-text" class="restaurant-name"></div>
+            </div>
+
+            <div class="summary-list">
+                <div class="summary-item">
+                    <div class="item-label">Total</div>
+                    <div id="total-text" class="item-value"></div>
+                </div>
+            </div>
+
+            <div id="payment-actions" class="payment-actions">
+                <div style="display: none;" id="apple-payment-request-button"
+										 class="apple-pay-button apple-pay-button-black">
+                </div>
+            </div>
+
+            <div id="user-message" class="user-message"></div>
+
+            <div class="user-information">
+                To modify shopping cart or to choose another payment method, press Done on top of the page.
+            </div>
+        </div>
+    </div>
+		</div>
+
+		<script>
+        var GOOGLE_PAY_VERSION = 2
+				var APPLE_PAY_VERSION = 3
+				var CURRENCY = 'USD'
+				var COUNTRY_CODE = 'US'
+				var params = Object.fromEntries(new URLSearchParams(location.hash.split('#')[1]))
+				if (!location.hash) {
+					alert('Something is wrong with your request, please close your browser by pressing Done and try again.')
+					document.body.innerHTML = ''
+				}
+				var ENV_PARAM = params.env
+				var PUBLIC_KEY_PARAM = params.pcpk
+				var AUTH_CODE_PARAM = params.x
+				var USER_ID_PARAM = params.i
+				var DRIVER_TIP_PARAM = params.a
+				var GRAND_TOTAL_PARAM = params.c
+				var SERVICE_TYPE_PARAM = decodeURIComponent(params.s)
+				var APP_NAME_PARAM = decodeURIComponent(params.rn)
+				var APP_IMAGE_PARAM = decodeURIComponent(params.ri)
+				var TOTALS_PARAM = JSON.parse(decodeURIComponent(params.f))
+				var ORDER_IDS_PARAM = JSON.parse(decodeURIComponent(params.b))
+				var SERVER_URL = ENV_PARAM === 'ENV_LIVE' ? 'https://live.api.menu.com/api'
+																									: ENV_PARAM === 'ENV_DEV' ? 'https://dev.api.menu.com/api'
+																																						: 'https://dev-new.api.menu.com/api'
+				location.hash = '' // Resets location hash
+				var clientToken = null
+				function initPage() {
+					setMessagePageLoading()
+					initUI()
+					initClientToken()
+				}
+				function setMessage(messageText, messageColor) {
+					var userMessage = document.getElementById('user-message')
+					userMessage.style.color = messageColor
+					userMessage.innerText = messageText
+				}
+				function removeMessage() {
+					setMessage('', null)
+				}
+				function setMessagePageLoading() {
+					setMessage('Please wait, Loading page...', null)
+				}
+				function setMessagePaymentProcessing() {
+					setMessage('Please wait, We are processing your payment.', null)
+				}
+				function initUI() {
+					var serviceTypeTextElement = document.getElementById('service-type-text')
+					var restaurantNameTextElement = document.getElementById('restaurant-name-text')
+					var restaurantImageElement = document.getElementById('restaurant-image')
+					var totalTextElement = document.getElementById('total-text')
+					var userMessagePaymentProcessing = document.getElementById('user-message-payment-processing')
+					var userMessagePaymentSuccess = document.getElementById('user-message-payment-processing')
+					serviceTypeTextElement.innerText = '(' + SERVICE_TYPE_PARAM + ')'
+					restaurantNameTextElement.innerText = APP_NAME_PARAM
+					restaurantImageElement.style.backgroundImage = 'url(' + APP_IMAGE_PARAM + ')'
+					totalTextElement.innerText = '$' + GRAND_TOTAL_PARAM
+				}
+				function initClientToken() {
+					// Call the fetch function passing the url of the API as a parameter
+					fetch(SERVER_URL + '/b/gct.aspx?pcpk=' + PUBLIC_KEY_PARAM + '&x=' + AUTH_CODE_PARAM + '&i=' + USER_ID_PARAM)
+						.then(response => response.json())
+						.then(function (response) {
+							// Your code for handling the data you get from the API
+							clientToken = response.Token
+							initPaymentSDK()
+						})
+						.catch(function () {
+							// This is where you run code if the server returns any errors
+						})
+				}
+				function initPaymentSDK() {
+					braintree.client.create({
+						authorization: clientToken
+					}, function (clientErr, clientInstance) {
+						if (clientErr) {
+							return
+						}
+						initApplePay(clientInstance)
+					})
+				}
+				function initApplePay(clientInstance) {
+					if (!window.ApplePaySession) {
+						alert('This device does not support Apple Pay')
+						return
+					}
+					if (!ApplePaySession.canMakePayments()) {
+						alert('This device is not capable of making Apple Pay payments')
+						return
+					}
+					braintree.applePay.create({
+						client: clientInstance
+					}, function (applePayErr, applePayInstance) {
+						if (applePayErr) {
+							alert('Error creating applePayInstance:', applePayErr)
+							return
+						}
+						initApplePayButton(applePayInstance)
+					})
+				}
+				function initApplePayButton(applePayInstance) {
+					removeMessage()
+					var applePayButton = document.getElementById('apple-payment-request-button')
+					applePayButton.style.display = null
+					applePayButton.addEventListener('click', function (event) {
+						var paymentRequest = applePayInstance.createPaymentRequest({
+							total: {
+								label: APP_NAME_PARAM,
+								amount: GRAND_TOTAL_PARAM
+							},
+							currencyCode: CURRENCY,
+							countryCode: COUNTRY_CODE,
+							// We recommend collecting billing address information, at minimum
+							// billing postal code, and passing that billing postal code with
+							// all Apple Pay transactions as a best practice.
+							requiredBillingContactFields: ['postalAddress']
+						})
+						var session = new ApplePaySession(APPLE_PAY_VERSION, paymentRequest)
+						session.onvalidatemerchant = function (event) {
+							applePayInstance.performValidation({
+								validationURL: event.validationURL,
+								displayName: APP_NAME_PARAM
+							}, function (err, merchantSession) {
+								if (err) {
+									// You should show an error to the user, e.g. 'Apple Pay failed to load.'
+									return
+								}
+								session.completeMerchantValidation(merchantSession)
+							})
+						}
+						session.onpaymentauthorized = function (event) {
+							applePayInstance.tokenize({
+								token: event.payment.token
+							}, function (tokenizeErr, payload) {
+								if (tokenizeErr) {
+									alert('Error tokenizing Apple Pay:', tokenizeErr)
+									session.completePayment(ApplePaySession.STATUS_FAILURE)
+									return
+								}
+								// Hide apple pay button
+								applePayButton.style.display = 'none'
+								pay_order(payload.nonce)
+								// After you have transacted with the payload.nonce,
+								// call `completePayment` to dismiss the Apple Pay sheet.
+								session.completePayment(ApplePaySession.STATUS_SUCCESS)
+							})
+						}
+						session.begin()
+					})
+				}
+				function pay_order(paymentNonce) {
+					setMessagePaymentProcessing()
+					var promiseList = []
+					var totalOrdersCount = ORDER_IDS_PARAM.length
+					for (let index = 0; index < totalOrdersCount; index++) {
+						const orderId = ORDER_IDS_PARAM[index]
+						const total = TOTALS_PARAM[index]
+						promiseList.push(
+							fetch(SERVER_URL + '/b/pn.aspx', {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/x-www-form-urlencoded'
+								},
+								body: new URLSearchParams({
+									b: orderId,
+									c: total,
+									p: paymentNonce
+								})
+							})
+						)
+					}
+					Promise.all(promiseList)
+						.then(function (response) {})
+						.catch(function () {})
+				}
+				window.onload = function () {
+					initPage()
+				}
+    </script>
+
+    <script src="https://js.braintreegateway.com/web/3.69.0/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.69.0/js/apple-pay.min.js"></script>
+</body>
+
+</html>

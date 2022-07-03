@@ -1,0 +1,22 @@
+export interface FinancialStatement_Detail {
+	ItemName:string
+	Price:number|string
+	TotalQty:number
+	TotalSales:string
+	OrderDate:string
+	OrderNumber:number
+	OrderStatus:string
+	Customer:string
+	PaymentMethod:string
+	SubTotal:number
+	Discount:number
+	DeliveryCharge:number
+	Tax_Final:number
+	Driver_Tip:number
+	GrandTotal:number
+	OrderSource:string
+	Owner_ServiceFee:number
+	ServiceFee:number
+	Owner_NetAccountCredit:number
+	Is_Settled:boolean
+}

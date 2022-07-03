@@ -1,0 +1,13 @@
+@mixin baseProps() {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+	cursor: pointer;
+}
+@mixin getIcon($propValue, $parent) {
+	@include baseProps();
+	background-image: vurl('/assets/img/#{$parent}/#{$propValue}.svg');
+}

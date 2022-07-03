@@ -1,0 +1,72 @@
+// Tabs
+.nav.nav-pills {
+	display: flex;
+	align-items: center;
+	padding: 0 12px;
+	@media (max-width: $screen-xs-max) {
+		min-width: 100%;
+		max-width: 100%;
+		display: flex;
+		flex-direction: row;
+	}
+	&.scrollable {
+		white-space: nowrap;
+		overflow-x: auto;
+	}
+	> li {
+		float: none;
+		display: inline-block;
+		cursor: pointer;
+		@media (max-width: $screen-xs-max) {
+			flex-grow: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		> a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: $gray;
+			font-weight: $lato-black;
+			font-size: 14px;
+			letter-spacing: 0;
+			padding: 0 15px 4px;
+			border-radius: 0;
+			text-transform: uppercase;
+			border-bottom: 2px solid transparent;
+			@media (max-width: $screen-xs-max) {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+		&.active {
+			> a {
+				border-color: $brand-success;
+				color: $brand-success;
+				background-color: transparent;
+			}
+		}
+		&.has-error {
+			> a {
+				color: $brand-danger;
+			}
+		}
+		&.disabled {
+			opacity: .3;
+			> a {
+				cursor: not-allowed;
+			}
+		}
+	}
+	&.nav-primary {
+		> li {
+			&.active {
+				> a {
+					border-color: $brand-primary;
+					color: $brand-primary;
+				}
+			}
+		}
+	}
+}

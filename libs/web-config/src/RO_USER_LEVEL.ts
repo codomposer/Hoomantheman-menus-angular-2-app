@@ -1,0 +1,10 @@
+export const RO_USER_LEVEL_SUPER_ADMIN = 1
+export const RO_USER_LEVEL_ADMIN = 2
+export const RO_USER_LEVEL_ENCODER = 3
+export const RO_USER_LEVEL_REST_OWNER = 4
+export const RO_USER_LEVEL_USER = 5
+export const RO_USER_LEVEL_ENCODING = 6
+export const RO_USER_LEVEL_AGENT_ADMIN = 7
+export const RO_USER_LEVEL_AGENT = 8
+export const RO_USER_LEVEL_KITCHEN = 9
+export const RO_USER_LEVEL_APPMAKER = 10

@@ -1,0 +1,1 @@
+export const GOOGLE_PLUS_WEB_CLIENT_ID__default = '912675303439-m043v17igm3qc2fhuqfqs8d0q43nt052.apps.googleusercontent.com'

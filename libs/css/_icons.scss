@@ -1,0 +1,52 @@
+@import "./icons.lib";
+// Icons
+$icons: (
+	'arrow-left', 'arrow-right', 'burger-search-fail', 'checkbox-off', 'checkbox-on', 'close', 'close-1', 'close-1-white',
+	'close-3', 'close-3-white', 'delete', 'delete-time', 'email', 'facebook', 'google', 'menu', 'menu-logo',
+	'menu-logo-white', 'menu-white', 'open', 'password', 'pencil', 'phone', 'profile', 'profile-selected',
+	'profile-white', 'promote', 'radio-off', 'radio-on', 'restaurant-menu', 'show-password', 'success', 'toggle-off',
+	'toggle-on', 'arrow-back-black', 'dish', 'funnel', 'funnel-on'
+);
+@each $propValue in $icons {
+	.#{$propValue}-icon {
+		@include getIcon($propValue, 'shared');
+		background-size: contain;
+	}
+	.base-icon {
+		@include baseProps();
+	}
+}
+// Toggle ON/OFF
+.toggle-on-icon, .toggle-off-icon {
+	width: 44px;
+}
+.menu-logo-icon, .menu-logo-white-icon {
+	width: 154px;
+	height: 21px;
+	@media (max-width: $grid-float-breakpoint-max) {
+		width: 84px;
+	}
+}
+// 112x112
+.burger-search-fail-icon, .restaurant-menu-icon {
+	width: 112px;
+	height: 112px;
+}
+// 120x120
+.success-icon {
+	width: 120px;
+	height: 120px;
+}
+// 28x28
+.close-1-icon {
+	width: 28px;
+	height: 28px;
+}
+.facebook-icon {
+	width: 24px;
+	height: 25px;
+}
+.google-icon {
+	width: 33px;
+	height: 25px;
+}

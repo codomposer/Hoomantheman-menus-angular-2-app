@@ -1,0 +1,24 @@
+{
+	"name": "@menus/api-proxy",
+	"version": "1.0.1",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@menus/redis": "workspace:^1.1.1",
+		"@menus/server": "workspace:^1.1.1",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6",
+		"ioredis": "^4.28.0"
+	},
+	"noUpdate": []
+}

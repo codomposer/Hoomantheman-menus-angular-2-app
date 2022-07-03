@@ -1,0 +1,15 @@
+@import "@menus/css/icons";
+@import "./icons.lib";
+// Icons
+$icons: (
+	'add-time', 'customer-map', 'dish', 'first-page', 'hamburger-menu', 'hamburger-menu-white',
+	'last-page', 'map', 'more-vert-black', 'next-page', 'previous-page',
+	'rating-off', 'rating-on', 'restaurant-map', 'restaurant-map-orange',
+	'search', 'support',
+);
+@each $propValue in $icons {
+	.#{$propValue}-icon {
+		@include getROIcon($propValue);
+		background-size: contain;
+	}
+}

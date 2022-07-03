@@ -1,0 +1,43 @@
+{
+	"name": "@menus/ro-edit-restaurant-ui",
+	"version": "1.1.16",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/dom": "^11.0.29",
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/store": "^27.0.35",
+		"@menus/breadcrumb-ui": "workspace:^1.1.2",
+		"@menus/font-awesome": "workspace:^1.1.2",
+		"@menus/page": "workspace:^1.4.9",
+		"@menus/restaurant": "workspace:^1.2.2",
+		"@menus/ro-layout-ui": "workspace:^1.2.38",
+		"@menus/ro-menu-ui": "workspace:^1.2.49",
+		"@menus/ro-orders": "workspace:^1.2.15",
+		"@menus/ro-orders-ui-OrdersTab": "workspace:^1.0.31",
+		"@menus/ro-restaurant": "workspace:^1.2.5",
+		"@menus/ro-restaurant-ui": "workspace:^1.16.40",
+		"@menus/ro-restaurant-ui-AccountInformationTab": "workspace:^1.0.7",
+		"@menus/ro-restaurant-ui-ChartsTab": "workspace:^1.0.13",
+		"@menus/ro-restaurant-ui-RestInfoTab": "workspace:^1.16.39",
+		"@menus/ro-user-common": "workspace:^2.7.14",
+		"@menus/route": "workspace:^1.2.5",
+		"@menus/shared-ui-lib": "workspace:^1.1.2",
+		"@menus/ui": "workspace:^1.4.3",
+		"@menus/web-config": "workspace:^1.6.14",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6",
+		"svelte": "^3.44.2"
+	},
+	"noUpdate": []
+}

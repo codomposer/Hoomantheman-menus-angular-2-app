@@ -1,0 +1,13 @@
+@import "./vurl";
+@mixin hero() {
+	.hero {
+		height: 200px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-image: vurl('/assets/img/shared/seo-hero--default.svg');
+		background-size: cover;
+		color: white;
+	}
+}

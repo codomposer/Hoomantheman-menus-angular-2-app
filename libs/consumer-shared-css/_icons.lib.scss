@@ -1,0 +1,4 @@
+@import "@menus/css/_icons.lib";
+@mixin getCRIcon($propValue) {
+	@include getIcon($propValue, 'cr');
+}

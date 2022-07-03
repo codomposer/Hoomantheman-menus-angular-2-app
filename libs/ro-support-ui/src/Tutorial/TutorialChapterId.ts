@@ -1,0 +1,17 @@
+export enum TutorialChapterId {
+	INTRODUCTION =  'introduction',
+	RESTAURANT_INFORMATION =  'restaurant-information',
+	ACCOUNT_INFORMATION =  'account-information',
+	MENU_SENSE =  'menu-sense',
+	PREVIEW =  'preview',
+	MENUS =  'menus',
+	ORDERS =  'orders',
+	COUPONS =  'coupons',
+	FINANCIAL_REPORTS =  'financial-reports',
+	MANAGE_PLATFORM =  'manage-platform',
+	USERS =  'users',
+	SUPPORT =  'support',
+	SETTINGS =  'settings',
+	BILLING =  'billing',
+	MARKETING =  'marketing',
+}

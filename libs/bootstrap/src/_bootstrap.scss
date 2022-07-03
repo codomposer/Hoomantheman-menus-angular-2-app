@@ -1,0 +1,93 @@
+/*!
+ * Bootstrap v3.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+// Core variables and mixins
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "variables";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "mixins";
+@mixin opacity($opacity) {
+	//$opacity-ie: ($opacity * 100);  // IE8 filter
+	//filter: #{alpha(opacity=$opacity-ie)};
+	opacity: $opacity;
+}
+@mixin reset-filter() {
+	//filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+@mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+	background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+	background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
+	background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+	//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 and down
+	background-repeat: repeat-x;
+}
+@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+	background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+	background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); // Opera 12
+	background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+	//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
+	background-repeat: repeat-x;
+}
+@mixin gradient-horizontal-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
+	background-image: -webkit-linear-gradient(left, $start-color, $mid-color $color-stop, $end-color);
+	background-image: -o-linear-gradient(left, $start-color, $mid-color $color-stop, $end-color);
+	background-image: linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+	//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 and down, gets no color-stop at all for proper fallback
+	background-repeat: no-repeat;
+}
+@mixin gradient-vertical-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
+	background-image: -webkit-linear-gradient($start-color, $mid-color $color-stop, $end-color);
+	background-image: -o-linear-gradient($start-color, $mid-color $color-stop, $end-color);
+	background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
+	//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down, gets no color-stop at all for proper fallback
+	background-repeat: no-repeat;
+}
+// Reset and dependencies
+@import "bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/print";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+// Core CSS
+@import "bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "type";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "code";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tables";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "forms";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+// Components
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/navs";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/pager";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/badges";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/media";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/panels";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/wells";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/close";
+// Components w/ JavaScript
+@import "bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/popovers";
+//@import "bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+// Utility classes
+@import "bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+body {
+	color: $gray;
+}

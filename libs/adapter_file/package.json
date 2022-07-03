@@ -1,0 +1,22 @@
+{
+	"name": "@menus/adapter_file",
+	"version": "1.0.1",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@sveltejs/kit": "next",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"svelte": "^3.44.2"
+	},
+	"noUpdate": []
+}

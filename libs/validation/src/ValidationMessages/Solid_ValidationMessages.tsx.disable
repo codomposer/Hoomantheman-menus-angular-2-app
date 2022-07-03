@@ -1,0 +1,32 @@
+import { createEffect, createMemo, For } from 'solid-js'
+import { compact, flatten } from '@ctx-core/array'
+import { has_dom } from '@ctx-core/dom'
+import { brand_danger } from '@menus/css'
+export const Solid_ValidationMessages = (props:Solid_ValidationMessages_props_T)=>{
+  const processed_errors = createMemo(()=>
+    compact(flatten(props.errors || []))
+  )
+  createEffect(()=>props.set_errors?.(processed_errors()))
+  const show = createMemo(()=>
+    processed_errors().length
+    && (props.alwaysShowErrors || (has_dom && props.focus))
+  )
+  createEffect(()=>props.onshow?.(show()))
+  return <>
+    {show && <>
+      <div class="has-error" style={{ 'border-color': brand_danger }}>
+        <For each={processed_errors()}>{error=>
+          <div class="help-block f-bold">{error}</div>
+        }</For>
+      </div>
+    </>}
+  </>
+}
+export interface Solid_ValidationMessages_props_T {
+  alwaysShowErrors?:boolean
+  errors?:string[]
+  set_errors?(errors:string[]):void
+  focus?:boolean
+  show?:boolean
+  onshow?:(show:boolean)=>void
+}

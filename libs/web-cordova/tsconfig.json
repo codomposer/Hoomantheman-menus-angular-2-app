@@ -1,0 +1,17 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"rootDir": ".",
+		"outDir": ".",
+		"declarationDir": ".",
+		"lib": [
+			"ESNext",
+			"dom"
+		],
+		"types": ["cordova", "cordova-plugin-file"]
+	},
+	"include": [
+		"src/**/*",
+		"node_modules/cordova-plugin-file/types/*.ts"
+	]
+}

@@ -1,0 +1,52 @@
+import type { Menuoptionsize_I, Menuoption } from '@menus/consumer-menu'
+import type { RoMenuitem_I } from './RoMenuitem_I.js'
+export class RoMenuitem implements RoMenuitem_I {
+	ID:number
+	HeadingID:number
+	Name:string
+	Name_Display?:string
+	Description:string
+	Description_Display:string
+	Price:number
+	Is_Single_Size:boolean
+	ItemTypeID?:number
+	CuisineTypeID?:number
+	DishCodeID:number
+	SortID:number
+	Enabled:boolean
+	Is_Deleted:boolean
+	Approval_ItemType_Status:number
+	Approval_Image_Enabled:boolean
+	Approval_Image_Status:number
+	Brand_Image_FileID?:number
+	Image_Uploader?:string
+	ItemOrders?:number
+	PopularLevel?:number
+	Date_Created?:string
+	Created_By?:string
+	Date_Modified:string
+	Modified_By?:string
+	Date_Deleted?:string
+	Deleted_By?:string
+	Source_ID?:number
+	Source_ItemOrders?:string
+	Source_PopularLevel?:number
+	Price_Display?:string
+	Is_SoldOut?:boolean
+	SoldOutAction:boolean
+	WithCoupon:boolean
+	CouponCode:string
+	CouponDiscount?:number
+	MenuImageExist?:boolean
+	ShowImageInGallery?:boolean
+	FileName?:string
+	// ui
+	_addSize:boolean
+	subTotal:number
+	quantity:number
+	menuoptionsize?:Menuoptionsize_I
+	menuoptionsizes:Menuoptionsize_I[]
+	menuoptions:Menuoption[]
+	is_selected:boolean
+	suggestion:string
+}

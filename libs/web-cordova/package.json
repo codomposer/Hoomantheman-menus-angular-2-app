@@ -1,0 +1,33 @@
+{
+	"name": "@menus/web-cordova",
+	"version": "1.0.17",
+	"private": true,
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/array": "^23.0.22",
+		"@ctx-core/dom": "^11.0.29",
+		"@ctx-core/object": "^21.0.21",
+		"@menus/consumer-http": "workspace:^1.8.3",
+		"@menus/core-routing": "workspace:^1.0.3",
+		"@menus/pdfmake": "workspace:^1.1.3",
+		"@menus/web-cordova": "workspace:^1.0.17",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/cordova": "^0.0.34",
+		"@types/cordova-ionic": "^0.0.29",
+		"@types/file-saver": "^2.0.3",
+		"@types/node": "^16.11.6",
+		"cordova-plugin-file": "^6.0.2",
+		"file-saver": "^2.0.5"
+	},
+	"noUpdate": []
+}

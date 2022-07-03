@@ -1,0 +1,654 @@
+{
+	"Name": "dev-api-security",
+	"Id": "f5d10045-17d7-4325-8d17-71b4f0b21316",
+	"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/webacl/dev-api-security/f5d10045-17d7-4325-8d17-71b4f0b21316",
+	"DefaultAction": {
+		"Allow": {}
+	},
+	"Description": "Custom WAFWebACL",
+	"Rules": [
+		{
+			"Name": "exception_owner",
+			"Priority": 0,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"ByteMatchStatement": {
+								"SearchString": "APIOwner",
+								"FieldToMatch": {
+									"UriPath": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								],
+								"PositionalConstraint": "CONTAINS"
+							}
+						},
+						{
+							"ByteMatchStatement": {
+								"SearchString": "_admin",
+								"FieldToMatch": {
+									"UriPath": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								],
+								"PositionalConstraint": "CONTAINS"
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Allow": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "exception_owner"
+			}
+		},
+		{
+			"Name": "body__POST__APIOwner-a-t",
+			"Priority": 1,
+			"Statement": {
+				"AndStatement": {
+					"Statements": [
+						{
+							"ByteMatchStatement": {
+								"SearchString": "/APIOwner/a/t.aspx",
+								"FieldToMatch": {
+									"UriPath": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								],
+								"PositionalConstraint": "STARTS_WITH"
+							}
+						},
+						{
+							"SizeConstraintStatement": {
+								"FieldToMatch": {
+									"Body": {}
+								},
+								"ComparisonOperator": "LT",
+								"Size": 1048576,
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Allow": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "Small-POST-body"
+			}
+		},
+		{
+			"Name": "body__POST__ApiOwner-a-pi",
+			"Priority": 2,
+			"Statement": {
+				"AndStatement": {
+					"Statements": [
+						{
+							"ByteMatchStatement": {
+								"SearchString": "/APIOwner/a/pi.aspx",
+								"FieldToMatch": {
+									"UriPath": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								],
+								"PositionalConstraint": "STARTS_WITH"
+							}
+						},
+						{
+							"SizeConstraintStatement": {
+								"FieldToMatch": {
+									"Body": {}
+								},
+								"ComparisonOperator": "LE",
+								"Size": 8388608,
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Allow": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "ApiOwner-a-pi-POST-body"
+			}
+		},
+		{
+			"Name": "body__POST__qt-image-act-upload",
+			"Priority": 3,
+			"Statement": {
+				"AndStatement": {
+					"Statements": [
+						{
+							"ByteMatchStatement": {
+								"SearchString": "qt=image",
+								"FieldToMatch": {
+									"QueryString": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								],
+								"PositionalConstraint": "CONTAINS"
+							}
+						},
+						{
+							"ByteMatchStatement": {
+								"SearchString": "act=upload",
+								"FieldToMatch": {
+									"QueryString": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								],
+								"PositionalConstraint": "CONTAINS"
+							}
+						},
+						{
+							"SizeConstraintStatement": {
+								"FieldToMatch": {
+									"Body": {}
+								},
+								"ComparisonOperator": "LE",
+								"Size": 5242880,
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Allow": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "APIOwner-a-r_POST_body"
+			}
+		},
+		{
+			"Name": "body__POST__api-b-cfu_mi-aspx",
+			"Priority": 4,
+			"Statement": {
+				"AndStatement": {
+					"Statements": [
+						{
+							"ByteMatchStatement": {
+								"SearchString": "/api/b/cfu_mi.aspx",
+								"FieldToMatch": {
+									"UriPath": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								],
+								"PositionalConstraint": "STARTS_WITH"
+							}
+						},
+						{
+							"SizeConstraintStatement": {
+								"FieldToMatch": {
+									"Body": {}
+								},
+								"ComparisonOperator": "LE",
+								"Size": 5242880,
+								"TextTransformations": [
+									{
+										"Priority": 0,
+										"Type": "NONE"
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Allow": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "body__POST__api-b-cfu_mi-aspx"
+			}
+		},
+		{
+			"Name": "AWS-AWSManagedRulesCommonRuleSet",
+			"Priority": 5,
+			"Statement": {
+				"ManagedRuleGroupStatement": {
+					"VendorName": "AWS",
+					"Name": "AWSManagedRulesCommonRuleSet"
+				}
+			},
+			"OverrideAction": {
+				"None": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "MetricForAMRCRS"
+			}
+		},
+		{
+			"Name": "dev-api-securityWhitelistRule",
+			"Priority": 6,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityWhitelistSetIPV4/c6f2261b-a3e7-48a4-bb0d-38cbb8da7d4b"
+							}
+						},
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityWhitelistSetIPV6/577ce2f6-64c5-40f7-bca8-d28fc3036575"
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Allow": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecurityWhitelistRule"
+			}
+		},
+		{
+			"Name": "dev-api-securityBlacklistRule",
+			"Priority": 7,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityBlacklistSetIPV4/5eb1a887-1f10-4970-ab04-77ae04e13ef4"
+							}
+						},
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityBlacklistSetIPV6/b3e3e64f-498e-49c3-ab9e-f7e69a229c76"
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Block": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecurityBlacklistRule"
+			}
+		},
+		{
+			"Name": "dev-api-securityHttpFloodRegularRule",
+			"Priority": 8,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityHTTPFloodSetIPV4/64787908-d619-4253-8d7a-46a4f7944a78"
+							}
+						},
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityHTTPFloodSetIPV6/4cdc19fc-9085-4d27-80c7-ef429b6fa1a3"
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Block": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecurityHttpFloodRegularRule"
+			}
+		},
+		{
+			"Name": "dev-api-securityScannersAndProbesRule",
+			"Priority": 9,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityScannersProbesSetIPV4/d4ad9efb-7d6b-45e4-8a83-340896cec5a2"
+							}
+						},
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityScannersProbesSetIPV6/3cab128b-5991-4089-8b6f-5dbc769c1449"
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Block": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecurityScannersProbesRule"
+			}
+		},
+		{
+			"Name": "dev-api-securityIPReputationListsRule",
+			"Priority": 10,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityIPReputationListsSetIPV4/aa29634f-6651-4371-a31d-c9aea54c4a8a"
+							}
+						},
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityIPReputationListsSetIPV6/cd0f512e-327f-4dc4-a9bc-8821f825313f"
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Block": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecurityIPReputationListsRule"
+			}
+		},
+		{
+			"Name": "dev-api-securityBadBotRule",
+			"Priority": 11,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityIPBadBotSetIPV4/0b5a1f0a-1ece-48d5-9d7a-b141062ec945"
+							}
+						},
+						{
+							"IPSetReferenceStatement": {
+								"ARN": "arn:aws:wafv2:us-west-2:158313916752:regional/ipset/dev-api-securityIPBadBotSetIPV6/6828fdd6-1ed4-474b-bb42-048bb581d23a"
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Block": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecurityBadBotRule"
+			}
+		},
+		{
+			"Name": "dev-api-securitySqlInjectionRule",
+			"Priority": 12,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"SqliMatchStatement": {
+								"FieldToMatch": {
+									"QueryString": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						},
+						{
+							"SqliMatchStatement": {
+								"FieldToMatch": {
+									"Body": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						},
+						{
+							"SqliMatchStatement": {
+								"FieldToMatch": {
+									"UriPath": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						},
+						{
+							"SqliMatchStatement": {
+								"FieldToMatch": {
+									"SingleHeader": {
+										"Name": "authorization"
+									}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						},
+						{
+							"SqliMatchStatement": {
+								"FieldToMatch": {
+									"SingleHeader": {
+										"Name": "cookie"
+									}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Block": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecuritySqlInjectionRule"
+			}
+		},
+		{
+			"Name": "dev-api-securityXssRule",
+			"Priority": 13,
+			"Statement": {
+				"OrStatement": {
+					"Statements": [
+						{
+							"XssMatchStatement": {
+								"FieldToMatch": {
+									"QueryString": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						},
+						{
+							"XssMatchStatement": {
+								"FieldToMatch": {
+									"Body": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						},
+						{
+							"XssMatchStatement": {
+								"FieldToMatch": {
+									"UriPath": {}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						},
+						{
+							"XssMatchStatement": {
+								"FieldToMatch": {
+									"SingleHeader": {
+										"Name": "cookie"
+									}
+								},
+								"TextTransformations": [
+									{
+										"Priority": 1,
+										"Type": "URL_DECODE"
+									},
+									{
+										"Priority": 2,
+										"Type": "HTML_ENTITY_DECODE"
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			"Action": {
+				"Block": {}
+			},
+			"VisibilityConfig": {
+				"SampledRequestsEnabled": true,
+				"CloudWatchMetricsEnabled": true,
+				"MetricName": "devapisecurityXssRule"
+			}
+		}
+	],
+	"VisibilityConfig": {
+		"SampledRequestsEnabled": true,
+		"CloudWatchMetricsEnabled": true,
+		"MetricName": "devapisecurityWAFWebACL"
+	},
+	"Capacity": 1122,
+	"ManagedByFirewallManager": false
+}

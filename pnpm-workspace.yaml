@@ -1,0 +1,10 @@
+packages:
+  - 'apps/*'
+  - 'libs/*'
+  - '@ctx-core/*'
+  - 'vendor/*'
+  - 'vendor/@ctx-core/*'
+  - 'vendor/kit/packages/*'
+  - 'vendor/kit/packages/create-svelte/templates/*'
+  - 'vendor/kit/examples/*'
+  - 'vendor/kit/.github/actions/*'

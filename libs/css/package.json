@@ -1,0 +1,22 @@
+{
+	"name": "@menus/css",
+	"version": "1.1.4",
+	"description": "Menus ENV values",
+	"author": "Brian Takita",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"bootstrap-sass": "^3.4.1"
+	},
+	"noUpdate": []
+}

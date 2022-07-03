@@ -1,0 +1,4 @@
+@import "@menus/css/_icons.lib";
+@mixin getROIcon($propValue) {
+	@include getIcon($propValue, 'ro');
+}

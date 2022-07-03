@@ -1,0 +1,38 @@
+{
+	"name": "@menus/user-addresses-ui",
+	"version": "1.1.2",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/array": "^23.0.22",
+		"@ctx-core/combinators": "^8.0.16",
+		"@ctx-core/dom": "^11.0.29",
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/store": "^27.0.35",
+		"@menus/app": "workspace:^1.1.1",
+		"@menus/consumer-http": "workspace:^1.8.3",
+		"@menus/consumer-layout-ui": "workspace:^1.8.3",
+		"@menus/consumer-user-address": "workspace:^1.2.3",
+		"@menus/consumer-user-common": "workspace:^1.4.1",
+		"@menus/dom": "workspace:^1.1.4",
+		"@menus/shared-ui": "workspace:^1.5.9",
+		"@menus/shared-ui-lib": "workspace:^1.1.2",
+		"@menus/ui": "workspace:^1.4.3",
+		"@menus/util": "workspace:^1.3.1",
+		"@menus/web-config": "workspace:^1.6.14",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6",
+		"svelte": "^3.44.2"
+	},
+	"noUpdate": []
+}

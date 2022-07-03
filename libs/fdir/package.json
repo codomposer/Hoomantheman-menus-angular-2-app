@@ -1,0 +1,21 @@
+{
+	"name": "@menus/fdir",
+	"version": "1.0.1",
+	"private": true,
+	"main": "./src/index.cjs",
+	"module": "./src/index.mjs",
+	"types": "./src/index.d.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "mkdir -p dist && cp src/* dist/",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@types/node": "^16.11.6",
+		"fdir": "^5.1.0",
+		"picomatch": "^2.3.0"
+	},
+	"noUpdate": []
+}

@@ -1,0 +1,40 @@
+{
+	"name": "@menus/http",
+	"version": "1.3.7",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run generate_ctx_I_file && npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"generate_ctx_I_file": "swc $(./node_modules/.bin/generate_ctx_I_file | tail -n1) --out-dir dist --source-maps --config-file .swcrc"
+	},
+	"devDependencies": {
+		"@ctx-core/dev-tools": "^7.1.4",
+		"@ctx-core/dom": "^11.0.29",
+		"@ctx-core/function": "^20.2.2",
+		"@ctx-core/number": "^8.0.16",
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/sleep": "^8.0.14",
+		"@ctx-core/store": "^27.0.35",
+		"@ctx-core/uri": "^12.0.15",
+		"@menus/api": "workspace:^1.3.1",
+		"@menus/auth": "workspace:^1.1.2",
+		"@menus/consumer-user-common": "workspace:^1.4.1",
+		"@menus/notyf": "workspace:^2.3.4",
+		"@menus/platform-settings": "workspace:^1.4.3",
+		"@menus/platform-settings-lib": "workspace:^1.2.3",
+		"@menus/ui": "workspace:^1.4.3",
+		"@menus/user-common": "workspace:^1.2.4",
+		"@menus/web-config": "workspace:^1.6.14",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6"
+	},
+	"noUpdate": []
+}

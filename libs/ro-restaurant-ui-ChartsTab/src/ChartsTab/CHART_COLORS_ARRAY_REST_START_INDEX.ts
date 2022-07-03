@@ -1,0 +1,1 @@
+export const CHART_COLORS_ARRAY_REST_START_INDEX = 2

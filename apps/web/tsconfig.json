@@ -1,0 +1,29 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": ".",
+		"declaration": true,
+		"declarationDir": ".",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"importsNotUsedAsValues": "remove",
+		"lib": [
+			"ESNext",
+			"dom"
+		],
+		"noUnusedLocals": false
+	},
+	"include": [
+		"*",
+		"bin/**/*",
+		"src/**/*",
+		"src/node_modules",
+		"../../node_modules/.pnpm/@types+mocha@9.0.0/node_modules/@types/mocha/index.d.ts"
+	],
+	"exclude": [
+		"node_modules/*",
+		"__sapper__/*",
+		"public/*"
+	]
+}

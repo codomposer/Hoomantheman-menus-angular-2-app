@@ -1,0 +1,92 @@
+$lato-regular: 400;
+$lato-bold: 700;
+$lato-black: 900;
+$fa-font-path: "/assets/fonts";
+$iPhone6-width: 375px;
+$navbar-height: 72px;
+$navbar-height-sm: 52px;
+$support-chat-box-container-height: 64px;
+$gray-base: #000;
+$gray-darker: lighten($gray-base, 13.5%); // #222
+$gray-dark: lighten($gray-base, 20%); // #333
+$gray: lighten($gray-base, 33.5%); // #555
+$gray-light: lighten($gray-base, 46.7%); // #777
+$gray-lighter: lighten($gray-base, 93.5%); // #eee
+$light: #ffffff !default;
+$royal: #64335D !default;
+$gray: #263238;
+$dark-gray: #455A65;
+$brand-primary: #F96C30;
+$brand-success: #39CE7B;
+$brand-info: #64335D; //#5bc0de;
+$brand-warning: #FFC63A;
+$brand-danger: #F94D30;
+$custom-btn-border-radius: 100px;
+$custom-input-border-radius: 3px;
+$text-color: $gray-light; //$gray-dark
+$link-color: $gray; //;
+$component-active-bg: $brand-success; //$brand-primary
+$btn-font-weight: $lato-black;
+$btn-success-border: $brand-success; //darken($btn-success-bg, 5%)
+$btn-border-radius-base: $custom-btn-border-radius; //$border-radius-base
+$btn-border-radius-large: $custom-btn-border-radius; //$border-radius-large
+$btn-border-radius-small: $custom-btn-border-radius; //$border-radius-small
+$input-bg: #fff; //
+$input-border: rgba(#455A64, .3); // #ccc
+// TODO: Rename `$input-border-radius` to `$input-border-radius-base` in v4
+$input-border-radius: $custom-input-border-radius; //$border-radius-base
+$input-border-radius-large: $custom-input-border-radius; //$border-radius-large
+$input-border-radius-small: $custom-input-border-radius; //$border-radius-small
+$input-border-focus: $brand-success;
+$input-height-base: 48px; //($line-height-computed + ($padding-base-vertical * 2) + 2);
+$input-height-large: 56px; //(ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2)
+$input-height-small: 40px; //(floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2)
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+$screen-phone: $screen-xs-min;
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+$screen-tablet: $screen-sm-min;
+$screen-md: 992px;
+$screen-md-min: $screen-md;
+$screen-desktop: $screen-md-min;
+$screen-lg: 1200px;
+$screen-lg-min: $screen-lg;
+$screen-lg-desktop: $screen-lg-min;
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+$screen-md-max: ($screen-lg-min - 1);
+$grid-float-breakpoint: $screen-md-min;
+$navbar-margin-bottom: 0; //$line-height-computed
+$navbar-border-radius: 0; // $border-radius-base
+$navbar-default-color: white; //#777
+$navbar-default-bg: $brand-primary; //#f8f8f8
+$navbar-default-link-color: white; //#777
+$nav-tabs-border-color: #DBDBDB; //#ddd
+$pagination-bg: $gray-lighter; //#fff
+$state-success-text: $brand-success;
+$modal-inner-padding: 0 24px 24px;
+$state-danger-text: $brand-danger;
+$modal-title-padding: 12px 24px 0;
+$modal-header-border-color: #DBDBDB;
+$modal-footer-border-color: transparent; //$modal-header-border-color
+$modal-lg: 85%;
+$modal-md: 632px; //95%
+$modal-sm: 95%;
+$list-group-border-radius: 0; //$border-radius-base
+$panel-body-padding: 0;
+$panel-heading-padding: 20px 15px; //10px 15px
+$panel-border-radius: 3px; // $border-radius-base
+$panel-primary-text: $brand-primary; //#fff
+$panel-primary-border: white; //$brand-primary
+$panel-primary-heading-bg: white; //$brand-primary
+$breadcrumb-padding-vertical: 0;
+$breadcrumb-padding-horizontal: 0;
+$breadcrumb-bg: white; //#f5f5f5
+$breadcrumb-color: #7C8B92;
+$breadcrumb-active-color: #7C8B92; //$gray-light
+$breadcrumb-separator: "/";
+$sidebar-grid-width: 394px;
+$sidebar-cart-width: 394px;
+$link-hover-color: $gray;
+$link-hover-decoration: none;

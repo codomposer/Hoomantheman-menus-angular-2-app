@@ -1,0 +1,26 @@
+{
+	"name": "@menus/deepmerge",
+	"version": "1.0.1",
+	"private": true,
+	"module": "./src/index.mjs",
+	"types": "./src/index.d.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "mkdir -p dist && cp src/* dist/",
+		"prepublishOnly": "npm run compile",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"@ctx-core/array": "^23.0.22",
+		"@ctx-core/dom": "^11.0.29",
+		"@ctx-core/number": "^8.0.16",
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/store": "^27.0.35",
+		"@ctx-core/string": "^9.0.20",
+		"@types/node": "^16.11.6",
+		"deepmerge": "^4.2.2"
+	},
+	"noUpdate": []
+}

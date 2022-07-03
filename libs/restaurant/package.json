@@ -1,0 +1,29 @@
+{
+	"name": "@menus/restaurant",
+	"version": "1.2.2",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/time": "^9.0.14",
+		"@menus/date": "workspace:^1.6.7",
+		"@menus/geolocatable": "workspace:^1.1.1",
+		"@menus/restaurant-hours-lib": "workspace:^1.1.1",
+		"@menus/search-menu-common": "workspace:^1.1.2",
+		"@menus/service-type": "workspace:^1.1.2",
+		"@menus/service-type-common": "workspace:^1.2.1",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6"
+	},
+	"noUpdate": []
+}

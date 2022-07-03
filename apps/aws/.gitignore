@@ -1,0 +1,7 @@
+app
+cdk.out
+.DS_Store
+/node_modules/
+yarn-error.log
+dist
+.env

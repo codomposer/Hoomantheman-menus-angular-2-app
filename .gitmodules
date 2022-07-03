@@ -1,0 +1,6 @@
+[submodule "vendor/sapper"]
+	path = vendor/sapper
+	url = https://github.com/btakita/sapper.git
+[submodule "vendor/builtins"]
+	path = vendor/builtins
+	url = https://github.com/btakita/builtins.git

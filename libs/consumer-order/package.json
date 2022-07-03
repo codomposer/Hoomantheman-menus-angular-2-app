@@ -1,0 +1,33 @@
+{
+	"name": "@menus/consumer-order",
+	"version": "1.2.1",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/store": "^27.0.35",
+		"@menus/consumer-menu": "workspace:^1.1.1",
+		"@menus/consumer-order-common": "workspace:^1.1.1",
+		"@menus/consumer-user": "workspace:^1.1.1",
+		"@menus/consumer-user-common": "workspace:^1.4.1",
+		"@menus/shared-order": "workspace:^1.1.4",
+		"@menus/shopping-cart": "workspace:^1.7.3",
+		"@menus/shopping-cart-common": "workspace:^1.5.9",
+		"@menus/user-address-common": "workspace:^1.2.2",
+		"@menus/user-common": "workspace:^1.2.4",
+		"@menus/user-payment": "workspace:^1.1.1",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6"
+	},
+	"noUpdate": []
+}

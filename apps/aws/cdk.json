@@ -1,0 +1,3 @@
+{
+	"app": "node bin/WebStack-cdk.js -s dev"
+}

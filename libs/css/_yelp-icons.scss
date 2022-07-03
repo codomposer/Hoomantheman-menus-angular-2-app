@@ -1,0 +1,24 @@
+// Apply BG Image according to device
+@mixin responsiveYelp($imageName, $parent: '') {
+	@if ($parent != '') {
+		$parent: '/' + $parent;
+	}
+	background-image: vurl('/assets/img#{$parent}/#{$imageName}.png');
+	background-repeat: no-repeat;
+	background-position: 50%;
+	background-size: contain;
+}
+.yelp-icon-0 {
+	@include responsiveYelp('stars_small_0', 'yelp');
+}
+@for $i from 1 through 4 {
+	.yelp-icon-#{$i} {
+		@include responsiveYelp('stars_small_#{$i}', 'yelp');
+	}
+	.yelp-icon-#{$i}\.5 {
+		@include responsiveYelp('stars_small_#{$i}_half', 'yelp');
+	}
+}
+.yelp-icon-5 {
+	@include responsiveYelp('stars_small_5', 'yelp');
+}

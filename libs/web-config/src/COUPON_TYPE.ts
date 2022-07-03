@@ -1,0 +1,2 @@
+export const COUPON_TYPE_ORDER_BASED = 1
+export const COUPON_TYPE_ITEM_BASED = 2

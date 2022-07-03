@@ -1,0 +1,42 @@
+import type { CouponError } from '@menus/shopping-cart'
+export class RoCoupon {
+	public ID:number
+	public FireFlyID:string
+	public Name:string
+	public Heading:string
+	public Description:string
+	public Limitation:string
+	public CouponCode:string
+	public DiscountType:number
+	public DiscountCriteria:number
+	public DiscountValue:number
+	public StartDate:string
+	public EndDate:string
+	public DailyStartTime:string
+	public DailyEndTime:string
+	public CouponType:number
+	public MenuItems:string[]
+	public MinOrder:number
+	public MaxOrder:number
+	public MinQty:number
+	public MaxQty:number
+	public MaxRedeemPerCustomer:number
+	public MaxRedeem:number
+	public DurationType:number
+	public Is_AllowBundle:boolean
+	public RedeemCount:number
+	public Is_Visible:boolean
+	public Enabled:boolean
+	public Is_Deleted:boolean
+	public DiningIn:boolean
+	public Catering:boolean
+	public Delivery:boolean
+	public Pickup:boolean
+	public TotalDiscount:number
+	// ui
+	public busy:boolean
+	public busyDelete:boolean
+	public is_selected:boolean
+	public invalid:boolean
+	public errors:CouponError[]
+}

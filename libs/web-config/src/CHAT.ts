@@ -1,0 +1,2 @@
+export const CHAT_THREAD_TYPE_ORDERS = 1
+export const CHAT_THREAD_TYPE_SUPPORT = 2

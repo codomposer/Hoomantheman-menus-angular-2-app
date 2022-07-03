@@ -1,0 +1,1 @@
+export const MAX_REST_SELECTION_LIMIT = 20

@@ -1,0 +1,109 @@
+# development only
+# HTTP server
+server {
+  listen       80;
+  server_name  menus-dev.lvh.me *.menus-dev.lvh.me menus-dev.mine.nu dev.menu.com;
+  proxy_buffers           32 4m;
+  proxy_busy_buffers_size     25m;
+  proxy_buffer_size 512k;
+  proxy_ignore_headers "Cache-Control" "Expires";
+  proxy_max_temp_file_size 0;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  client_max_body_size        1024m;
+  client_body_buffer_size     4m;
+  proxy_connect_timeout 300;
+  proxy_read_timeout 300;
+  proxy_send_timeout 300;
+  proxy_intercept_errors off;
+
+  location / {
+    root /home/brian/work/menus/menus-angular-2-app-sapper/apps/web/static;
+    try_files $uri @node;
+  }
+  location @node {
+    proxy_pass          http://localhost:8004;
+    proxy_set_header    Host             $host;
+    proxy_set_header    X-Real-IP        $remote_addr;
+    proxy_set_header    X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_set_header    X-Client-Verify  SUCCESS;
+    proxy_set_header    X-Client-DN      $ssl_client_s_dn;
+    proxy_set_header    X-SSL-Subject    $ssl_client_s_dn;
+    proxy_set_header    X-SSL-Issuer     $ssl_client_i_dn;
+  }
+  location /mapp {
+    try_files $uri @mapp;
+  }
+  location @mapp {
+    proxy_pass          http://menus.mine.nu;
+    rewrite ^(/mapp/.*)$ $1 break;
+    proxy_set_header    X-Real-IP        $remote_addr;
+    proxy_set_header    X-Forwarded-Host $host;
+    proxy_set_header    X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_set_header    X-Client-Verify  SUCCESS;
+    proxy_set_header    X-Client-DN      $ssl_client_s_dn;
+		proxy_ssl_server_name on;
+  }
+}
+
+# HTTPS server
+## sudo mkdir -p /etc/nginx/ssl
+## sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/menus-dev-ctx.key -out /etc/ssl/certs/menus-dev-ctx.crt
+server {
+  listen       443 ssl;
+  server_name  menus-dev.lvh.me *.menus-dev.lvh.me menus-dev.mine.nu dev.menu.com;
+
+#  ssl                  on;
+  ssl_certificate      /etc/ssl/certs/menus-dev-ctx.crt;
+  ssl_certificate_key  /etc/ssl/private/menus-dev-ctx.key;
+  ssl_session_timeout  5m;
+
+  ssl_protocols  SSLv2 SSLv3 TLSv1;
+  ssl_ciphers  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+  ssl_prefer_server_ciphers   on;
+
+  proxy_buffers           32 4m;
+  proxy_busy_buffers_size     25m;
+  proxy_buffer_size 512k;
+  proxy_ignore_headers "Cache-Control" "Expires";
+  proxy_max_temp_file_size 0;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  client_max_body_size        1024m;
+  client_body_buffer_size     4m;
+  proxy_connect_timeout 300;
+  proxy_read_timeout 300;
+  proxy_send_timeout 300;
+  proxy_intercept_errors off;
+
+  location / {
+    root /home/brian/work/menus/menus-angular-2-app-sapper/apps/web/static;
+    try_files $uri @node;
+  }
+  location @node {
+    root /home/brian/work/menus/menus-angular-2-app-sapper/apps/web/static;
+    proxy_pass          http://localhost:8004;
+    proxy_set_header    Host             $host;
+    proxy_set_header    X-Real-IP        $remote_addr;
+    proxy_set_header    X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_set_header    X-Client-Verify  SUCCESS;
+    proxy_set_header    X-Client-DN      $ssl_client_s_dn;
+    proxy_set_header    X-SSL-Subject    $ssl_client_s_dn;
+    proxy_set_header    X-SSL-Issuer     $ssl_client_i_dn;
+  }
+  location /mapp {
+    try_files $uri @mapp;
+  }
+  location @mapp {
+		proxy_pass          https://menus.mine.nu;
+    rewrite ^(/mapp/.*)$ $1 break;
+    proxy_set_header    X-Real-IP        $remote_addr;
+    proxy_set_header    X-Forwarded-Host $host;
+    proxy_set_header    X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_set_header    X-Client-Verify  SUCCESS;
+    proxy_set_header    X-Client-DN      $ssl_client_s_dn;
+		proxy_ssl_server_name on;
+  }
+}

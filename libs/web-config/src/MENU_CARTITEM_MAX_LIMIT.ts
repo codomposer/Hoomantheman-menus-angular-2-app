@@ -1,0 +1,1 @@
+export const MENU_CARTITEM_MAX_LIMIT = 25

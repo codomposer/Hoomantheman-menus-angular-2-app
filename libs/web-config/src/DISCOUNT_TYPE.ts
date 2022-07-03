@@ -1,0 +1,2 @@
+export const DISCOUNT_TYPE_PERCENT = 1
+export const DISCOUNT_TYPE_AMOUNT = 2

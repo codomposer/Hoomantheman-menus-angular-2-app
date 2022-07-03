@@ -1,0 +1,34 @@
+{
+	"name": "@menus/request-demo-ui",
+	"version": "1.2.2",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/dom": "^11.0.29",
+		"@ctx-core/store": "^27.0.35",
+		"@menus/css": "workspace:^1.1.4",
+		"@menus/dom": "workspace:^1.1.4",
+		"@menus/ladda": "workspace:^1.1.1",
+		"@menus/notyf": "workspace:^2.3.4",
+		"@menus/ro-http": "workspace:^1.6.12",
+		"@menus/shared-ui-lib": "workspace:^1.1.2",
+		"@menus/ui": "workspace:^1.4.3",
+		"@menus/util": "workspace:^1.3.1",
+		"@menus/validation": "workspace:^1.5.10",
+		"@menus/web-config": "workspace:^1.6.14",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6",
+		"svelte": "^3.44.2"
+	},
+	"noUpdate": []
+}

@@ -1,0 +1,34 @@
+@import "./icons.lib";
+// Icons
+$icons: (
+	'add-card', 'add-photo', 'basket', 'basket-empty', 'basket-empty-white',
+	'cancel-address', 'card', 'coupon-tag', 'dish', 'dish-2', 'delete-2', 'filter',
+	'filter-on', 'funnel', 'funnel-on', 'home', 'location', 'location-2',
+	'location-white', 'map-on', 'map-off', 'order-history', 'order-history-selected',
+	'pencil-2', 'restaurant-menu-2', 'restaurant-map', 'search', 'search-white', 'search-on',
+	'settings', 'view-on', 'view-off'
+);
+@each $propValue in $icons {
+	.#{$propValue}-icon {
+		@include getCRIcon($propValue);
+	}
+}
+// 36x36
+.basket-empty-icon, .basket-empty-white-icon {
+	width: 36px;
+	height: 36px;
+}
+// 64x64
+.card-icon, .restaurant-menu-2-icon, .add-photo-icon {
+	width: 64px;
+	height: 64px;
+}
+.map-on-icon, .map-off-icon, .view-on-icon, .view-off-icon {
+	width: 18px;
+	height: 18px;
+}
+// 112x112
+.dish-icon {
+	width: 112px;
+	height: 112px;
+}

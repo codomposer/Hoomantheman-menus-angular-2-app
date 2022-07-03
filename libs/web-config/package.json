@@ -1,0 +1,25 @@
+{
+	"name": "@menus/web-config",
+	"version": "1.6.14",
+	"private": true,
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/dom": "^11.0.29",
+		"@ctx-core/object": "^21.0.21",
+		"@menus/core-routing": "workspace:^1.0.3",
+		"@menus/util": "workspace:^1.3.1",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6"
+	},
+	"noUpdate": []
+}

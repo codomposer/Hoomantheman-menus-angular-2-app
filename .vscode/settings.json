@@ -1,0 +1,8 @@
+{
+    "typescript.check.workspaceVersion": false,
+    "files.exclude": {
+        "**/*node_modules": false,
+        "backend-rest": false,
+        "**/*.ngfactory.ts": true
+    }
+}

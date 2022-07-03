@@ -1,0 +1,17 @@
+.DS_Store
+/node_modules/
+/src/node_modules/@sapper/
+yarn-error.log
+/cypress/screenshots/
+/__sapper__/
+tsconfig.tsbuildinfo
+tmp
+
+build
+rollup.config.js
+
+.rollup.cache
+.svelte-kit
+
+*.jsx
+*.map

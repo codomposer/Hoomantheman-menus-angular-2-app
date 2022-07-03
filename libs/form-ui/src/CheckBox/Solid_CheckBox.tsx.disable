@@ -1,0 +1,64 @@
+import { createMemo, createSignal } from 'solid-js'
+import { validation, validation_args_T } from '@menus/validation'
+import { DOMElement } from 'solid-js/jsx-runtime'
+import type { CheckBox_value_T } from '../src'
+export const Solid_CheckBox = (props:Solid_CheckBox_props_T)=>{
+  const [checked, set_checked] = createSignal(false)
+  const disabled = createMemo(()=>!!props.disabled())
+  return <>
+    <div ref={root=>props.validation && validation(root, props.validation)}
+         onclick={evt=>{
+           props.onclick?.(evt)
+         }}
+         classList={{
+           CheckBox: true,
+           checkbox: !props.inline,
+           'checkbox-inline': props.inline,
+           'toggle-btn': props.toggle,
+           'label-left': props.textAlign === 'left',
+           disabled:disabled(),
+         }}
+    >
+      <label>
+        <input type="checkbox"
+               checked={checked()}
+               disabled={props.disabled()}
+               title={props.title}
+               onchange={evt=>{
+                 set_checked(evt.currentTarget.checked)
+                 set_value()
+                 props.onchange?.(evt)
+               }}
+        />
+        <span class="icon"></span>
+        {props.text && <span class="text">{props.text}</span>}
+      </label>
+    </div>
+  </>
+  function set_value() {
+    props.set_value(
+      checked()
+      ? (typeof props.value() === 'number') ? 1 : true
+      : (
+        props.value() == undefined
+        ? props.value()
+        : typeof props.value() === 'number' ? 0 : false
+      )
+    )
+  }
+}
+export interface Solid_CheckBox_props_T {
+  set_value(val:CheckBox_value_T):void
+  checked?:()=>CheckBox_value_T
+  value?:()=>CheckBox_value_T
+  disabled?:()=>boolean
+  inline?:boolean
+  toggle?:boolean
+  textAlign?:string
+  text?:string
+  title?:string
+  validation?:validation_args_T
+  errors?:string[]
+  onclick?:(e:MouseEvent)=>void
+  onchange?:(e:Event&{ currentTarget:HTMLInputElement, target:DOMElement })=>void
+}

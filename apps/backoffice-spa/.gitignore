@@ -1,0 +1,4 @@
+.svelte-kit
+dist
+tsconfig.tsbuildinfo
+*.zip

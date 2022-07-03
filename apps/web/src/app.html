@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'/>
+  <meta name='viewport' content='width=device-width,initial-scale=1.0'/>
+  <meta name='theme-color' content='#333333'/>
+	<!-- begin svelte.base -->
+  %svelte.base%
+	<!-- end svelte.base -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<script src="https://unpkg.com/vh-check/dist/vh-check.min.js"></script>
+  <script>
+    (function () {
+			// initialize the test
+			var test = vhCheck()
+		}())
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+				registration.update()
+			})
+		}
+  </script>
+	<!-- svelte.styles -->
+  %svelte.styles%
+	<!-- svelte.head -->
+  %svelte.head%
+</head>
+<body>
+<!-- svelte.html -->
+<div id='svelte'>%svelte.body%</div>
+<!-- svelte.scripts -->
+%svelte.scripts%
+</body>
+</html>

@@ -1,0 +1,211 @@
+import { createEffect, createSignal, onCleanup } from 'solid-js'
+import { render } from 'solid-js/web'
+import { styled } from 'solid-styled-components'
+import { tap_interceptor_T } from '@ctx-core/function'
+import type { Unsubscriber } from '@ctx-core/store'
+import { ro_restaurant$_b, ro_restaurant_Ctx } from '@menus/ro-restaurant'
+import { Solid_CheckBox } from '@menus/form-ui'
+import { Solid_ValidationMessages } from '@menus/validation'
+import { day_minutes, hour_minutes } from '@menus/date'
+export function render_Solid_RestInfoTab_OnScheduledOrder(parent:HTMLDivElement, props:RestInfoTab_OnScheduledOrder_props_T) {
+  return render(()=>
+      <RestInfoTab_OnScheduledOrder {...props}></RestInfoTab_OnScheduledOrder>,
+    parent
+  )
+}
+export const RestInfoTab_OnScheduledOrder = (props:RestInfoTab_OnScheduledOrder_props_T)=>{
+  const ctx = props.ctx
+  const ro_restaurant$ = ro_restaurant$_b(ctx)
+  const [ro_restaurant, set_ro_restaurant] = createSignal(ro_restaurant$.$)
+  const [days, set_days] = createSignal(0)
+  const [hours, set_hours] = createSignal(0)
+  const [minutes, set_minutes] = createSignal(0)
+  const [handling_ro_restaurant_change, set_handling_ro_restaurant_change] = createSignal(false)
+  const [NotificationOnScheduledOrder, set_NotificationOnScheduledOrder] = createSignal(false)
+  const unsubscribers:Unsubscriber[] = []
+  onCleanup(()=>{
+    unsubscribers.forEach(fn=>fn())
+  })
+  unsubscribers.push(
+    ro_restaurant$.subscribe($ro_restaurant$=>{
+      if (handling_ro_restaurant_change()) return
+      set_handling_ro_restaurant_change(true)
+      try {
+        set_ro_restaurant($ro_restaurant$)
+        const OnScheduledOrderMinutes = $ro_restaurant$?.CallOnScheduledOrderMinutes
+        set_days(Math.floor(OnScheduledOrderMinutes / day_minutes))
+        set_hours(Math.floor((OnScheduledOrderMinutes % day_minutes) / hour_minutes))
+        set_minutes(Math.floor(OnScheduledOrderMinutes % hour_minutes))
+        set_NotificationOnScheduledOrder($ro_restaurant$.NotificationOnScheduledOrder)
+      } finally {
+        set_handling_ro_restaurant_change(false)
+      }
+    })
+  )
+  createEffect(()=>{
+    if (handling_ro_restaurant_change()) return
+    const OnScheduledOrderMinutes = days() * day_minutes + hours() * hour_minutes + minutes()
+    ro_restaurant$.update(tap_(ro_restaurant=>{
+        ro_restaurant.CallOnScheduledOrderMinutes = OnScheduledOrderMinutes
+        ro_restaurant.FaxOnScheduledOrderMinutes = OnScheduledOrderMinutes
+        ro_restaurant.EmailOnScheduledOrderMinutes = OnScheduledOrderMinutes
+        ro_restaurant.SMSOnScheduledOrderMinutes = OnScheduledOrderMinutes
+      })
+    )
+  })
+  return (<>
+    {ro_restaurant() &&
+    <div class="RestInfoTab_OnScheduledOrder">
+      <div class="row">
+        <div class="col-lg-8 input-container">
+          <Solid_CheckBox
+            text="Send Notification for Scheduled Orders"
+            toggle={true}
+            set_value={value=>
+              setTimeout(()=>
+                  ro_restaurant$.update(tap_(ro_restaurant=>{
+                    ro_restaurant.NotificationOnScheduledOrder = !!value
+                  }))
+                , 0)
+            }
+          ></Solid_CheckBox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 input-container OnScheduledOrderMinutes-container">
+          <InlineBlock className="btn-xlg-height">You will be notified</InlineBlock>
+          <InlineBlock className="btn-xlg-height">
+            <TextCenter>
+              <div>Days</div>
+              <NumberInput
+                type="number" className="form-control"
+                name="OnScheduledOrderMinutes_presenter_days"
+                id="OnScheduledOrderMinutes_presenter_days"
+                value={days()}
+                onchange={evt=>set_days(parseInt(evt.currentTarget.value))}
+              />
+            </TextCenter>
+            <TextCenter>
+              <div>Hours</div>
+              <NumberInput
+                type="number" className="form-control"
+                name="OnScheduledOrderMinutes_presenter_hours"
+                id="OnScheduledOrderMinutes_presenter_hours"
+                value={hours()}
+                onchange={evt=>set_hours(parseInt(evt.currentTarget.value))}
+              />
+            </TextCenter>
+            <TextCenter>
+              <div>Minutes</div>
+              <NumberInput
+                type="number" className="form-control"
+                name="OnScheduledOrderMinutes_presenter_minutes"
+                id="OnScheduledOrderMinutes_presenter_minutes"
+                value={minutes()}
+                onchange={evt=>set_minutes(parseInt(evt.currentTarget.value))}
+              />
+            </TextCenter>
+          </InlineBlock>
+          <InlineBlock className="btn-xlg-height">ahead of the preparation time...</InlineBlock>
+          <InlineBlock className="btn-xlg-height">
+            <Solid_ValidationMessages
+              set_errors={errors=>props.set_OnScheduledOrderMinutes_errors(errors)}
+            ></Solid_ValidationMessages>
+          </InlineBlock>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="col-lg-8 input-container">
+            <Solid_CheckBox
+              text="Call On Scheduled Order"
+              toggle={true}
+              disabled={()=>!NotificationOnScheduledOrder()}
+              value={()=>ro_restaurant().CallOnScheduledOrder}
+              set_value={CallOnScheduledOrder=>{
+                ro_restaurant$.update(tap_(ro_restaurant=>{
+                  ro_restaurant.CallOnScheduledOrder = !!CallOnScheduledOrder
+                }))
+              }}
+            ></Solid_CheckBox>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="col-lg-8 input-container">
+            <Solid_CheckBox
+              text="Email On Scheduled Order"
+              toggle={true}
+              disabled={()=>!NotificationOnScheduledOrder()}
+              value={()=>ro_restaurant().EmailOnScheduledOrder}
+              set_value={EmailOnScheduledOrder=>{
+                ro_restaurant$.update(tap_(ro_restaurant=>{
+                  ro_restaurant.EmailOnScheduledOrder = !!EmailOnScheduledOrder
+                }))
+              }}
+            ></Solid_CheckBox>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="col-lg-8 input-container">
+            <Solid_CheckBox
+              text="Fax On Scheduled Order"
+              toggle={true}
+              disabled={()=>!NotificationOnScheduledOrder()}
+              value={()=>ro_restaurant().FaxOnScheduledOrder}
+              set_value={FaxOnScheduledOrder=>{
+                ro_restaurant$.update(tap_(ro_restaurant=>{
+                  ro_restaurant.FaxOnScheduledOrder = !!FaxOnScheduledOrder
+                }))
+              }}
+            ></Solid_CheckBox>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="col-lg-8 input-container">
+            <Solid_CheckBox
+              text="SMS On Scheduled Order"
+              toggle={true}
+              disabled={()=>!NotificationOnScheduledOrder()}
+              value={()=>ro_restaurant().SMSOnScheduledOrder}
+              set_value={SMSOnScheduledOrder=>{
+                ro_restaurant$.update(tap_(ro_restaurant=>{
+                  ro_restaurant.SMSOnScheduledOrder = !!SMSOnScheduledOrder
+                }))
+              }}
+            ></Solid_CheckBox>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </>)
+}
+const InlineBlock = styled('div')`
+display: inline-block;
+margin-right: 4px;
+`
+const TextCenter = styled('label')`
+text-align: center;
+`
+const NumberInput = styled('input')`
+width: 5em;
+text-align: right;
+`
+export interface RestInfoTab_OnScheduledOrder_props_T {
+  ctx:ro_restaurant_Ctx
+  set_OnScheduledOrderMinutes_errors(errors:string[]):void
+}
+export function tap_<Obj = unknown>(
+  fn:tap_interceptor_T<Obj>
+):(obj:Obj)=>Obj {
+  return (obj:Obj)=>{
+    fn(obj)
+    return obj
+  }
+}

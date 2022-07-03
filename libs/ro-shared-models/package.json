@@ -1,0 +1,43 @@
+{
+	"name": "@menus/ro-shared-models",
+	"version": "1.3.4",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile"
+	},
+	"devDependencies": {
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/store": "^27.0.35",
+		"@menus/api": "workspace:^1.3.1",
+		"@menus/chart.js": "workspace:^1.1.2",
+		"@menus/consumer-menu": "workspace:^1.1.1",
+		"@menus/consumer-order": "workspace:^1.2.1",
+		"@menus/consumer-user-common": "workspace:^1.4.1",
+		"@menus/form": "workspace:^1.1.1",
+		"@menus/ro-http": "workspace:^1.6.12",
+		"@menus/ro-user-common": "workspace:^2.7.14",
+		"@menus/service-type-common": "workspace:^1.2.1",
+		"@menus/shared-menu": "workspace:^1.0.0",
+		"@menus/shared-order": "workspace:^1.1.4",
+		"@menus/shopping-cart": "workspace:^1.7.3",
+		"@menus/sort-shared": "workspace:^1.1.1",
+		"@menus/user": "workspace:^1.1.1",
+		"@menus/user-common": "workspace:^1.2.4",
+		"@menus/util": "workspace:^1.3.1",
+		"@menus/web-config": "workspace:^1.6.14",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/chart.js": "^2.9.34",
+		"@types/node": "^16.11.6",
+		"chart.js": "^3.6.0",
+		"flatpickr": "^4.6.9"
+	},
+	"noUpdate": []
+}

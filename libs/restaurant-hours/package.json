@@ -1,0 +1,48 @@
+{
+	"name": "@menus/restaurant-hours",
+	"version": "1.2.1",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"types": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "npm run generate_ctx_I_file && npm run compile",
+		"clean": "rm -rf dist",
+		"compile": "swc src --out-dir dist --copy-files --source-maps --config-file .swcrc",
+		"prepublishOnly": "npm run compile",
+		"test": "ava",
+		"generate_ctx_I_file": "swc $(./node_modules/.bin/generate_ctx_I_file | tail -n1) --out-dir dist --source-maps --config-file .swcrc"
+	},
+	"devDependencies": {
+		"@ava/typescript": "^3.0.0",
+		"@ctx-core/array": "^23.0.22",
+		"@ctx-core/cache": "^12.0.37",
+		"@ctx-core/dev-tools": "^7.1.4",
+		"@ctx-core/object": "^21.0.21",
+		"@ctx-core/store": "^27.0.35",
+		"@ctx-core/time": "^9.0.14",
+		"@menus/api": "workspace:^1.3.1",
+		"@menus/consumer-http": "workspace:^1.8.3",
+		"@menus/date": "workspace:^1.6.7",
+		"@menus/page": "workspace:^1.4.9",
+		"@menus/restaurant": "workspace:^1.2.2",
+		"@menus/restaurant-frame": "workspace:^1.7.1",
+		"@menus/restaurant-hours-lib": "workspace:^1.1.1",
+		"@menus/service-type": "workspace:^1.1.2",
+		"@menus/service-type-common": "workspace:^1.2.1",
+		"@menus/shared-http": "workspace:^1.0.1",
+		"@menus/ui": "workspace:^1.4.3",
+		"@swc/cli": "^0.1.51",
+		"@swc/core": "^1.2.106",
+		"@types/node": "^16.11.6",
+		"ava": "^3.15.0",
+		"esm": "^3.2.25"
+	},
+	"noUpdate": [],
+	"ava": {
+		"require": [
+			"esm"
+		]
+	}
+}

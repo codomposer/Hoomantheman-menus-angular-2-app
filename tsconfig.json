@@ -1,0 +1,42 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compileOnSave": true,
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "composite": true,
+    "declaration": true,
+    "declarationDir": "src",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "remove",
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noErrorTruncation": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "src",
+    "preserveSymlinks": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": false,
+    "target": "es2019"
+  },
+  "exclude": [
+    "node_modules/**",
+    "**/node_modules/**",
+    "**/dist/**"
+  ],
+  "references": []
+}
